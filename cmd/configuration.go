@@ -340,6 +340,7 @@ func NewTraefikConfiguration() *TraefikConfiguration {
 				GraceTimeOut: flaeg.Duration(configuration.DefaultGraceTimeout),
 			},
 			CheckNewVersion: true,
+			RequestID:       false,
 		},
 		ConfigFile: "",
 	}

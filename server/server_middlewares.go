@@ -150,6 +150,10 @@ func (s *Server) buildServerEntryPointMiddlewares(serverEntryPointName string, s
 		serverMiddlewares = append(serverMiddlewares, middlewares.NewEntryPointMetricsMiddleware(s.metricsRegistry, serverEntryPointName))
 	}
 
+	if s.globalConfiguration.RequestID {
+		serverMiddlewares = append(serverMiddlewares, &middlewares.AddRequestID{})
+	}
+
 	if s.globalConfiguration.API != nil {
 		if s.globalConfiguration.API.Stats == nil {
 			s.globalConfiguration.API.Stats = thoas_stats.New()
